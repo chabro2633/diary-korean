@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { center, context } = subtitleContext as {
+    const { center, context } = subtitleContext as unknown as {
       center: { id: number; video_id: string; text: string; speaker?: string };
       context: Array<{ id: number; text: string; speaker?: string }>;
     };
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     await cacheAIAnalysis(
       subtitleId,
       contextHash,
-      analysis,
+      analysis as unknown as Record<string, unknown>,
       'gemini-1.5-flash',
       0 // Token count not available from current API
     );
