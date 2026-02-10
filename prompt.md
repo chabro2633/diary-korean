@@ -1,161 +1,246 @@
-# PRD: YouTube Context Korean (v1.1)
+# PRD: YouTube Context Korean (v1.2)
 
-## 1. Introduction / Overview
+## **1. Introduction / Overview**
 
 - **서비스명:** YouTube Context Korean (가칭)
-- **목적:** 중급 이상의 한국어 학습자와 K-Culture 팬을 대상으로, 단순한 단어의 사전적 의미를 넘어 실제 영상 속에서의 '맥락(Context)', '뉘앙스', '문화적 배경'을 학습할 수 있는 검색 기반 서비스를 제공한다.
-- **핵심 가치:**
-    - **Contextual Search:** 검증된 양질의 자막 데이터를 기반으로 정확한 영상 구간 검색.
-    - **AI Insight:** Generative AI를 통해 숨은 의미, 화자의 의도, 문화적 배경을 실시간 분석.
-    - **Interactive Learning:**  나만의 단어장으로 능동적인 학습 유도.
+- **목적:** 중급 이상의 한국어 학습자와 K-Culture 팬을 대상으로, 단순한 사전적 의미를 넘어 실제 영상 속에서의 **'맥락(Context)', '뉘앙스', '문화적 사용 사례'**를 직접 눈으로 확인하고 학습할 수 있는 **영상 검색 엔진**을 제공한다.
+- **핵심 가치 (Value Proposition):**
+    - **Live Context:** 텍스트 사전으로 설명하기 힘든 '분위기(눈치)', '톤 앤 매너'를 실제 영상 클립으로 즉시 확인.
+    - **Reliable Caption:** 자동 생성 자막의 부정확함을 제거하고, 팬덤과 공식 채널이 제공한 '검증된 자막(Dual Subtitle)' 영상만 제공.
+    - **Request-driven Expansion:**  검색 결과가 없을 때 사용자가 직접 영상을 요청하며 서비스와 함께 성장.
 
-## 2. Goals (목표)
+## **2. Goals (MVP 목표)**
 
-- **학습 경험 혁신:** 사전으로는 알 수 없는 '상황적 의미'와 '비유/풍자'를 AI 분석을 통해 제공하여 학습 깊이를 더한다.
-- **팬덤 기반 학습 유도:** 좋아하는 아티스트의 영상 필터링 및 큐레이션 기능을 통해 Engagement를 증대시킨다.
-- **데이터 기반 품질 확보:** Human-verified 자막 우선 노출 및 채널 화이트리스팅을 통해 학습 데이터의 신뢰도를 보장한다.
+- **검색 신뢰도 확보:** 사용자가 원하는 표현이 포함된 정확한 영상 구간(Time-stamp)을 1초 이내에 찾아준다. ✅
+- **학습 데이터 품질 보장:** 한국어 자막(필수)과 영어 자막(권장)이 모두 존재하는 영상 위주로 필터링하여 학습 편의성을 높인다. 🛠️
+- **사용자 수요 수집:** 검색 실패 로그와 '영상 요청' 기능을 통해 유저가 진짜 궁금해하는 키워드와 콘텐츠 데이터를 확보한다. ⚠️ 로그만 구현
 
-## 3. User Stories (유저 스토리)
+## **3. User Stories (유저 스토리)**
 
-- **[검색/탐색]** 사용자는 "눈치"라는 단어를 검색하여, 이 단어가 다양한 상황(직장, 친구, 연인)에서 어떻게 다르게 쓰이는지 확인하고 싶다.
-- **[필터링]** BTS 팬인 사용자는 검색 결과 중 'BTS' 출연 영상만 필터링하고, 자동 생성 자막이 아닌 정확한 자막이 달린 영상만 보고 싶다.
-- **[AI 분석]** 사용자는 영상 속 대사가 왜 웃긴지 이해가 안 될 때, AI가 제공하는 '상황 맥락'과 '문화적 배경' 설명을 보고 싶다.
-- **[학습/쉐도잉]** 사용자는 구간 반복 기능을 켜놓고 자신의 목소리를 녹음하여, 원본 영상의 억양과 비교하며 연습하고 싶다.
-- **[저장/공유]** 사용자는 "정국이 자주 쓰는 아재개그" 같은 테마 단어장을 만들어 저장하고, 이를 다른 팬들과 공유하고 싶다.
+- **[검색/탐색]** 사용자는 "눈치"라는 단어가 포함된 영상을 검색하여, 직장 상사 눈치를 보는 상황과 연인 눈치를 보는 상황이 영상에서 어떻게 다른지 분위기를 파악하고 싶다. ✅
+- **[필터링]** BTS 팬인 사용자는 검색 결과 중 'BTS'가 출연한 영상만 모아보고 싶고, 영어 자막이 있어서 뜻을 바로 알 수 있는 영상을 선호한다. ❌
+- **[학습/반복]** 사용자는 배우의 발음과 억양을 익히기 위해, 해당 대사가 나오는 구간만 버튼 하나로 무한 반복(Loop) 듣기를 하고 싶다. ❌
+- **[AI 분석]** 검색된 표현의 뉘앙스, 사용 상황, 높임말 수준을 AI가 분석해주어 문화적 맥락을 이해하고 싶다. ✅
+- **[요청]** 검색 결과가 없을 때, "이 단어 영상 찾아줘"라고 요청 버튼을 눌러 운영자에게 알리를 주고 싶다. ❌
+- **[저장]** 마음에 드는 문장이나 영상을 '내 단어장'에 저장해두고 나중에 다시 찾아보고 싶다. ❌
 
-## 4. Functional Requirements (기능 요구사항)
+## **4. Functional Requirements (기능 요구사항)**
 
-### 4.1. 검색 및 탐색 (Search & Discovery)
+### **4.1. 검색 및 탐색 (Search & Discovery)**
 
-- **인덱스 기반 검색:** 실시간 유튜브 API 호출 의존도를 낮추고 속도를 높이기 위해, 미리 수집/인덱싱된 DB 내에서 키워드를 검색한다.
-- **상세 필터링:** 카테고리(드라마, 예능), 인물(아이돌, 배우) 외에 **자막 퀄리티(공식 자막/유저 자막)** 필터를 제공한다.
-- **추천 키워드:** 현재 트렌드 및 사용자가 선택한 아티스트의 빈출 표현을 추천한다.
-- **검색 실패 로깅 (Zero Result):** 검색 결과가 0건인 키워드를 별도 로깅하여, 추후 콘텐츠 확장의 지표로 활용한다.
+- **키워드 인덱스 검색:** Neon PostgreSQL과 pg_trgm 확장을 통해 빠른 전문 검색(Full-text Search)을 제공한다. ✅
+- **검색 결과 0건 대응 (Zero Result Handling):**
+    - 검색 결과가 없을 때, **[이 키워드 영상 요청하기]** 버튼을 눈에 띄게 노출한다. ❌ UI 미구현
+    - 요청 결과는 관리자 대시보드에 카운팅 되며, 추후 크롤링 우선순위에 반영한다. ❌
+    - 현재: `zero_result_queries` 테이블에 0건 검색 로깅만 구현 ✅
+- **필터링:**
+    - 필수: 채널/인물(BTS, 아이유 등), 장르(드라마, 예능). ❌ DB 구조는 준비됨
+    - 자막 옵션: '한/영 동시 자막(Dual Only)' 필터 제공. ❌
 
-### 4.2. 영상 재생 및 학습 (Playback & Learning)
+### **4.2. 영상 재생 및 학습 (Playback & Learning)**
 
-- **스마트 구간 재생:** 검색된 표현의 시작/종료 시점뿐만 아니라, 문맥 파악을 위해 앞뒤 3초(buffer)를 포함하여 재생한다.
-- **쉐도잉 모드 (Shadowing):**
-    - 문장 단위 반복 재생 (Loop).
-    - 사용자 음성 녹음 및 원본 오디오와 비교 청취 기능.
-- **자막 동기화:** 재생 시점의 한글 자막 하이라이팅.
+- **스마트 구간 재생 (Contextual Playback):**
+    - 검색된 키워드 **앞뒤 3~5초 여유분(Buffer)**을 포함하여 재생, 단절된 문장이 아닌 '상황'을 보여준다. ❌
+- **구간 반복 (AB Loop):**
+    - 별도 설정 없이 버튼 클릭 한 번으로 '현재 문장'을 무한 반복 재생한다. ❌
+- **스크립트 뷰어 (Script View):**
+    - 영상 하단 또는 우측에 **'정확한 대사 텍스트'와 '타임스탬프'**를 명확히 보여준다. ⚠️ 데이터는 준비됨
+- **AI 표현 분석 (Gemini 1.5 Flash):** ✅ **구현 완료**
+    - 검색된 표현의 정의, 뉘앙스, 사용 상황, 높임말 수준 분석
+    - 문화적 맥락과 K-drama/K-pop 특유의 사용 사례 설명
+    - 관련 표현, 문법 포인트, 예문 제공
+    - 캐싱을 통한 비용 최적화 (`ai_analysis_cache` 테이블)
 
-### 4.3. AI 맥락 분석 (AI Context Analysis) - Core Feature
+### **4.3. 데이터 파이프라인 (Data Pipeline)**
 
-- **Prompt Engineering 고도화:**
-    - **Input:** 타겟 문장 + **전후 맥락(Pre/Post Context 5~10문장)** + 영상 메타데이터(제목, 채널명, 태그).
-    - **Persona:** "한국 문화와 언어적 뉘앙스를 깊이 이해하는 한국어 튜터".
-    - **Output Structure (JSON):** 의미(Definition), 뉘앙스/속뜻(Nuance), 상황/감정(Situation), 격식 수준(Politeness Level), 문화적 배경(Cultural Note).
-- **Hallucination 방지:** 확실하지 않은 문화적 배경이나 유래에 대해서는 추측성 답변을 배제하고 일반적인 의미만 제공하도록 제약(Fallback) 설정.
-- **캐싱(Caching):** 동일한 클립에 대한 분석 요청 시 DB에 저장된 분석 결과를 반환하여 비용 절감.
+- **Channel Whitelisting:** ✅ **구현 완료**
+    - 자막 퀄리티가 보장된 공식 채널(방송사, 소속사) 및 신뢰할 수 있는 팬 채널 리스트 관리.
+    - 현재 33개 화이트리스트 채널 등록 완료
+    - 주요 채널: 코크티비, 워크맨, TWICE, Korean Unnie, BLACKPINK 등
 
-### 4.4. UI/UX (Interface)
+- **점진적 수집 전략 (Incremental Collection):** ✅ **구현 완료**
+    - 현재 상태: 33개 화이트리스트 채널에서 26개 영상, 11,243개 자막 수집 완료
+    - 채널당 5-10개 영상으로 시작하여 사용자 수요에 따라 확장
+    - 자동화 스크립트: `collect-all-channels.ts`를 통한 일괄 수집 지원
+    - yt-dlp 기반 안정적 수집 파이프라인
 
-- **인터랙티브 뷰어:**
-    - (PC) 화면 분할: 영상 플레이어 vs AI 인사이트 카드.
-    - (Mobile) 세로 스크롤 최적화: 영상 하단에 스크롤 가능한 AI 카드 및 스크립트 뷰 배치.
-- **인사이트 카드:** 사용자가 직관적으로 이해할 수 있도록 구조화된 텍스트 카드 UI 제공.
+- **Dual Subtitle 전략 및 번역 우선순위:** 🛠️ **Phase 2 예정**
+    - **배경:** 영어 자막이 있는 영상은 글로벌 학습자에게 유리하며, 번역 품질도 공식 제공 자막이 더 신뢰도가 높음
+    - **전략:**
+        1. **영어 자막 우선 수집**: 한국어+영어 자막이 모두 있는 영상을 Tier 1으로 분류
+        2. **번역 활용**: 영어 자막을 기반으로 다국어 번역 제공 (Google Translate API 등)
+        3. **학습 효과**: 한국어-영어 대조를 통한 이중 언어 학습 지원
+    - **현재 상태**:
+        - 한국어 자막만 수집 중 (자동 생성 자막 포함)
+        - yt-dlp는 다중 자막 수집 지원 가능 (기술적 준비 완료)
+        - 영어 자막 수집 및 Tier 분류 기능은 Phase 2에서 구현 예정
+    - **구현 계획**:
+        ```typescript
+        // 영어 자막 수집 예정 구조
+        subtitles_en {
+          id, video_id, sequence_num,
+          start_time_ms, end_time_ms,
+          text_en, text_normalized
+        }
 
-### 4.5. 데이터 파이프라인 및 관리 (Data Pipeline & Management) - New
+        // Tier 분류
+        videos.subtitle_quality: 'dual' | 'korean_only' | 'english_only' | 'auto'
+        ```
 
-- **Channel Whitelisting:** 양질의 자막(CC)을 제공하는 공식 채널(방송사, 웹예능, 유명 크리에이터) 리스트를 선정하고 관리한다.
-- **수집 및 인덱싱:** 화이트리스트 채널의 신규 영상을 주기적(Daily/Weekly)으로 크롤링하여 자막 텍스트를 ElasticSearch 등의 검색 엔진에 인덱싱한다.
-- **데이터 정제:** '자동 생성 자막(ASR)'은 원칙적으로 배제하되, 콘텐츠 부족 시 별도 태그를 달아 후순위로 노출한다.
-- **Broken Link 관리:** 주기적으로 영상 상태(삭제/비공개 여부)를 체크하여 인덱스에서 제외하거나 대체 영상을 매핑한다.
+- **저작권 준수 (Compliance):** ✅
+    - 수집한 자막 데이터는 **'검색 인덱싱' 용도**로만 내부 서버에 사용하고, 실제 플레이어 자막은 YouTube Embed 기능을 활용한다.
 
-## 5. Non-Goals (제외 범위)
+## **5. Non-Goals (MVP 제외 범위)**
 
-- **전체 영상 번역:** 클립 위주의 학습 서비스이므로 전체 영상 번역은 제공하지 않는다.
-- **직접 호스팅:** 유튜브 임베디드 플레이어만 사용하며 영상을 직접 저장하지 않는다.
-- **초급 문법 강의:** 자모음, 기초 문법 등은 다루지 않는다.
+- **사용자 음성 녹음/비교:** 브라우저 권한 문제 및 기술적 난이도를 고려하여 제외.
+- **퀴즈 및 평가:** 단순 뷰어 기능에 집중한다.
+- **직접 영상 번역 Request:** 영상 요청은 받지만, 번역 요청(자막 제작 요청)은 받지 않는다.
+- **커뮤니티 기능:** Phase 2로 이관.
 
-## 6. Success Metrics (성공 지표)
+## **6. Success Metrics (성공 지표)**
 
-- **Engagement:** 검색 후 영상 시청 완료율 (클립 완주율).
-- **AI Interaction:** AI 카드 열람률 및 '더 보기' 클릭 횟수.
-- **Retention:** D+7 재방문율 (특히 '내 단어장' 기능 사용자군).
-- **Data Driven:** **검색 실패율(Zero Result Rate)** - 사용자가 원했으나 제공하지 못한 키워드 비율 (콘텐츠 확장의 핵심 지표).
-- **Virality:** 생성된 단어장(Collection)의 공유 및 복사(Fork) 횟수.
+### **현재 측정 가능 지표** ✅
+- **검색 쿼리 수 및 빈도**: `search_logs` 테이블 수집 중
+- **Zero Result Rate**: `zero_result_queries` 테이블로 검색 실패율 추적
+- **AI 분석 캐시 히트율**: 비용 최적화 지표
 
-## 7. Technical Considerations
+### **Phase 2 구현 후 측정 예정** ❌
+- **Search Hit Rate:** 검색 시 결과(영상)가 1건 이상 노출되는 비율
+- **Engagement:** 검색 결과 클릭 후 '구간 반복' 기능 사용 횟수
+- **Request Rate:** 검색 실패 시 '요청 버튼' 전환율 (User Demand 파악)
 
-- **YouTube Quota Management:** 실시간 검색 API 사용을 지양하고, **자체 인덱싱 DB 검색** 위주로 설계하여 API 할당량 문제를 해결한다.
-- **LLM Latency & Cost:**
-    - 인기 클립은 미리 분석하여 저장(Pre-processing).
-    - 실시간 분석 시, 응답 속도를 위해 Streaming Response 고려.
-- **Mobile Experience:** 학습자의 이동 중 사용 패턴을 고려하여 모바일 웹/앱의 세로 모드 UI/UX 최적화 필수.
+## **7. Current Deployment Status (v1.2 배포 현황)**
 
-## 1. Introduction / Overview
+### **인프라** ✅
+- **프론트엔드**: Vercel (Next.js 16.1.4)
+  - Production URL: https://diary-korean.vercel.app
+- **데이터베이스**: Neon PostgreSQL (서버리스)
+  - Full-text Search with pg_trgm extension
+- **AI 분석**: Google Gemini 1.5 Flash
+- **인증**: NextAuth (Google OAuth 설정 준비 완료)
+- **자막 수집**: yt-dlp 기반 자동화 파이프라인
 
-**서비스명:** YouTube Context Korean (가칭) 
+### **데이터 현황** (2026-02-10 기준)
+- **화이트리스트 채널**: 33개 등록
+- **수집된 영상**: 26개
+- **수집된 자막**: 11,243개
+- **주요 수집 채널**:
+  - 코크티비 (예능): 5개 영상, 5,044개 자막
+  - 워크맨 (예능): 5개 영상, 3,028개 자막
+  - TWICE (음악): 5개 영상, 1,714개 자막
+  - Korean Unnie/아이유 (교육): 4개 영상, 424개 자막
+  - BLACKPINK (음악): 1개 영상, 203개 자막
 
-**목적:** 중급 이상의 한국어 학습자와 K-Culture 팬을 대상으로, 단순한 단어의 사전적 의미를 넘어 실제 영상 속에서의 '맥락(Context)', '뉘앙스', '문화적 배경'을 학습할 수 있는 검색 기반 서비스를 제공한다. 
+### **운영 스크립트** ✅
+- `scripts/whitelist-channels.ts`: 채널 등록
+- `scripts/collect-all-channels.ts`: 일괄 자막 수집
+- `scripts/collect-subtitles.ts`: 개별 영상/채널 수집
+- `scripts/seed-neon.ts`: 데이터베이스 초기화
+- `scripts/check-collected.ts`: 수집 현황 확인
 
-**핵심 가치:** 사용자가 특정 단어나 표현을 검색하면, 해당 표현이 사용된 K-Drama, 예능, 아이돌 영상의 클립을 찾아주고, Generative AI(LLM)를 통해 해당 상황의 숨은 의미와 뉘앙스를 실시간으로 분석해 준다.
+### **API 엔드포인트** ✅
+- `GET /api/search`: 자막 검색
+- `GET /api/search/trending`: 인기 키워드
+- `GET /api/videos/[videoId]`: 영상 상세 및 자막
+- `POST /api/ai/analyze`: AI 표현 분석
 
-## 2. Goals (목표)
+## **8. Technical Stack**
 
-- **학습 경험 혁신:** 사전으로는 알 수 없는 '상황적 의미'와 '비유/풍자'를 AI 분석을 통해 제공하여 학습 깊이를 더한다.
-- **팬덤 기반 학습 유도:** 좋아하는 배우나 아이돌의 영상으로 필터링하여 학습 동기를 부여한다 (Engagement 증대).
-- **검색 정확도 확보:** Youglish와 같이 키워드가 포함된 정확한 영상 구간을 제공한다.
+### **Frontend**
+- Next.js 16.1.4 (App Router)
+- TypeScript
+- Tailwind CSS
+- NextAuth (Google OAuth)
 
-## 3. User Stories (유저 스토리)
+### **Backend**
+- Neon PostgreSQL (Serverless)
+- @neondatabase/serverless
+- pg_trgm extension for full-text search
 
-- **[검색/탐색]** 사용자는 "눈치"라는 단어를 검색하여, 이 단어가 다양한 상황(직장, 친구 사이, 연인 사이)에서 어떻게 다르게 쓰이는지 영상 클립으로 확인하고 싶다.
-- **[필터링]** BTS의 팬인 사용자는 한국어 공부를 할 때, 검색 결과 중 'BTS'가 출연한 영상만 필터링해서 보고 싶다.
-- **[AI 분석]** 사용자는 영상 속 대사가 왜 웃긴지, 혹은 왜 무례한지 이해가 안 될 때, AI가 제공하는 '상황 맥락' 설명을 읽고 이해하고 싶다.
-- **[저장]** 사용자는 학습한 표현과 AI의 분석 카드를 '내 단어장'에 저장하여 나중에 복습하고 싶다.
+### **AI & External Services**
+- Google Gemini 1.5 Flash (expression analysis)
+- yt-dlp (subtitle extraction)
+- YouTube Data API (metadata, 추후 사용 예정)
 
-## 4. Functional Requirements (기능 요구사항)
+### **Database Schema**
+```sql
+-- Core tables
+channels (id, name, category, is_active, subtitle_quality)
+videos (id, channel_id, title, duration_seconds, has_korean_subtitle)
+subtitles (id, video_id, sequence_num, start_time_ms, end_time_ms, text, text_normalized)
 
-4.1. 검색 및 탐색 (Search & Discovery)
+-- Analytics & caching
+search_logs (id, query, result_count, created_at)
+zero_result_queries (id, query, frequency)
+ai_analysis_cache (id, subtitle_id, context_hash, analysis, model_name)
+```
 
-1. **키워드 검색:** 사용자가 한국어 단어, 문장, 표현을 입력하면 해당 표현이 포함된 유튜브 영상 클립 리스트를 제공해야 한다. (Youglish 방식)
+## **9. Implementation Status Summary**
 
-2. **카테고리/인물 필터링:** 검색 결과 내에서 특정 카테고리(드라마, 예능, 인터뷰) 또는 특정 인물(예: 아이돌 그룹명, 배우 이름)로 결과를 좁힐 수 있어야 한다.
+| 기능 카테고리 | 기능 | 상태 | 비고 |
+|--------------|------|------|------|
+| **검색** | 키워드 검색 | ✅ 완료 | PostgreSQL 전문 검색 |
+| | 검색 로깅 | ✅ 완료 | search_logs, zero_result_queries |
+| | 영상 요청 UI | ❌ 미구현 | Phase 2 |
+| | 필터링 (채널/장르) | ❌ 미구현 | DB 구조 준비됨 |
+| **재생** | YouTube Embed | ⚠️ 기본 구현 | |
+| | 스마트 구간 재생 | ❌ 미구현 | Phase 2 |
+| | AB Loop 반복 | ❌ 미구현 | Phase 2 |
+| | 스크립트 뷰어 | ⚠️ 부분 구현 | 타임스탬프 표시 가능 |
+| **AI** | 표현 분석 (Gemini) | ✅ 완료 | 캐싱 포함 |
+| **데이터** | 화이트리스트 관리 | ✅ 완료 | 33개 채널 |
+| | 자막 수집 파이프라인 | ✅ 완료 | yt-dlp 기반 |
+| | 한국어 자막 | ✅ 완료 | 11,243개 |
+| | 영어 자막 수집 | ❌ 미구현 | Phase 2 우선순위 높음 |
+| | 다국어 번역 | ❌ 미구현 | Phase 2 |
+| **인증** | NextAuth 설정 | ⚠️ 준비 완료 | 활성화 필요 |
+| | 내 단어장 | ❌ 미구현 | Phase 2 |
 
-3. **추천 키워드:** 메인 화면에서 현재 유행하는 한국어 표현이나, 선택한 아티스트(예: BTS)가 자주 쓰는 표현을 추천해야 한다.
+## **10. Future Scope (Phase 2 Roadmap)**
 
-4.2. 영상 재생 (Video Playback)
+*(MVP 런칭 후 우선순위 기능)*
 
-1. **구간 재생:** 검색된 표현이 등장하기 직전부터 재생을 시작하고, 해당 문장이 끝나면 루프(반복) 되거나 멈추는 기능을 제공해야 한다.
+### **High Priority** 🔥
+1. **영어 자막 수집 및 Dual Subtitle 지원**
+   - 배경: 글로벌 학습자 확대, 번역 품질 향상
+   - 구현: yt-dlp 다중 자막 수집, Tier 분류 시스템
+   - 기대효과: 이중 언어 학습 지원, 다국어 번역 기반 마련
 
-2. **자막 동기화:** 영상 재생 시, 해당 시점의 한글 자막을 하이라이트 하여 보여줘야 한다.
+2. **프론트엔드 UX 개선**
+   - 스마트 구간 재생 (앞뒤 버퍼 포함)
+   - AB Loop 무한 반복 기능
+   - 채널/장르 필터링 UI
+   - 영상 요청 버튼 및 관리자 대시보드
 
-4.3. AI 맥락 분석 (AI Context Analysis) - *Core Feature*
+3. **사용자 인증 및 개인화**
+   - Google OAuth 활성화
+   - 내 단어장/북마크 기능
+   - 학습 진도 추적
 
-1. **Generative AI 연동:** 재생 중인 클립의 자막(Script)과 영상 메타데이터를 LLM(예: GPT, Gemini)에 프롬프트로 전달하여 분석 결과를 생성해야 한다.
+### **Medium Priority**
+4. **Community 기능**
+   - 유저가 직접 좋은 자막이 달린 유튜브 링크를 제보하는 크라우드 소싱 기능
 
-2. **분석 내용 포함:**
+5. **검색 방식 개선**
+   - 배경: 동음이어의 처리가 현재로써는 불가. '눈(eye/snow)', '배(boat/pear/stomach)'
+   - 해결방법: 유저의 질문을 문장으로 받으면 어떨까?
+   - 고려 필요:
+     - AI 활용 시 비용
+     - 알고리즘 구축시 정확도 하락
 
-• **뉘앙스(Nuance):** 직역이 아닌 의역된 속뜻.
+### **Low Priority**
+6. **올인원 모바일 플랫폼**
 
-• **상황(Situation):** 화자의 감정 상태, 상대방과의 관계(존댓말/반말 사용 이유).
+   [관련 리서치 자료](https://www.notion.so/300b1e2920ff80a09132ea05727eca4e?pvs=21)
 
-• **문화적 배경:** 관련된 한국의 문화나 유행어 설명.
+   - 배경: 현재 유저들은 다양한 앱을 왔다갔다하며 쓰고 있음
+   - 해결방법: 하나의 서비스에 모두 제공한다
+   - 고려 필요:
+     - 어떤 기능이 어떤 우선순위로 제작되어야 할까?
 
-3. **실시간/캐싱:** 비용 절감을 위해 한 번 분석된 클립의 AI 분석 결과는 DB에 저장(Caching)하여 재사용한다.
+---
 
-4.4. UI/UX (Interface)
-
-1. **인터랙티브 뷰어:** 화면을 분할하여 한쪽은 영상 플레이어, 다른 쪽은 'AI 인사이트 카드'를 배치한다.
-
-2. **인사이트 카드:** 사용자가 보기 쉽게 '의미', '상황', '활용 팁' 등으로 구조화된 텍스트를 제공한다.
-
-## 5. Non-Goals (제외 범위)
-
-- **전체 영상 번역:** 영상 전체를 번역해 주는 서비스가 아니며, 검색된 '클립(구간)' 위주로 제공한다.
-- **유튜브 영상 업로드/호스팅:** 모든 영상은 유튜브 임베디드 플레이어를 사용하며, 직접 영상을 호스팅 하지 않는다.
-- **초급자용 기초 문법:** 자모음 학습이나 기초 문법 강의는 제공하지 않는다.
-
-## 6. Success Metrics (성공 지표)
-
-- **검색 후 영상 시청 완료율:** 검색 결과 클릭 후, 해당 클립을 끝까지(또는 1회 이상 반복) 시청한 비율.
-- **AI 카드 열람률:** 영상 시청 중 AI 분석 내용을 확인하기 위해 인터랙션 한 횟수.
-- **재방문율 (Retention):** 특정 아티스트 필터를 사용하여 학습한 사용자의 D+7 재방문율.
-
-## 7. Technical Considerations & Open Questions
-
-- **YouTube Data API Quota:** 키워드 검색 시 유튜브 API의 할당량(Quota) 제한을 어떻게 관리할 것인가? (자체 자막 DB 구축 필요성 검토)
-- **LLM 비용 및 Latency:** 실시간 분석 시 발생하는 지연 시간과 토큰 비용을 최적화할 방안은? (초기엔 인기 클립 위주로 Pre-processing 권장)
-- **자막 정확도:** 유튜브 자동 생성 자막의 정확도가 낮을 경우, AI 분석 품질이 떨어질 수 있음. (신뢰할 수 있는 채널 화이트리스팅 고려)
+**Last Updated**: 2026-02-10
+**Version**: 1.2 (Deployment + Data Collection Phase)
+**GitHub**: https://github.com/chabro2633/diary-korean
+**Production**: https://diary-korean.vercel.app
